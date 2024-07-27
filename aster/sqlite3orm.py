@@ -15,6 +15,11 @@ class SQLModel:
         self.cursor.execute(query)
         self.conn.commit()
 
+    def drop_table(self, table_name: str):
+        query = f"DROP TABLE IF EXISTS {table_name}"
+        self.cursor.execute(query)
+        self.conn.commit()
+
     def insert(self, table_name: str, data: dict) -> int:
         columns = ", ".join(data.keys())
         placeholders = ", ".join(["?"] * len(data))
